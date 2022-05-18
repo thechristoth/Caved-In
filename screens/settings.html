@@ -1,0 +1,149 @@
+<!DOCTYPE html lang="en">
+
+	<head>
+
+		<title>Caved In</title>
+		<meta name="description" content="Caved In">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+		<link rel="shortcut icon" href="#">
+        <link rel="stylesheet" href="/styles/settings_style.css">
+        <script src="/scripts/constants//general_constants.js"></script>
+        <script src="/scripts/classes/settings_manager.js "></script>
+        <script src="/scripts/snippets/create_settings.js "></script>
+
+	</head>
+
+	<body>
+
+        <div id="settings">
+
+            <div id="settings_options_container">
+
+                <h1>SETTINGS</h1>
+
+                <div id="settings-toolbar">
+
+                    <input type="radio" id="radiographics" name="radio-options" value="graphics" checked>
+                    <label for="radiographics" onclick="changeSettingsOption('graphics');">GRAPHICS</label>
+                
+                    <input type="radio" id="radioAuido" name="radio-options" value="audio">
+                    <label for="radioAuido" onclick="changeSettingsOption('audio')"">AUDIO</label>
+                
+                </div>
+
+             </div>
+
+            <form id="settings_form" method="post" onsubmit="event.preventDefault();">
+
+                <div id="graphics_settings">
+
+                    <table cellspacing="25px">
+
+                        <tr>
+
+                            <td><p>FIELD OF VISION:</p></td>
+                            <td>
+
+                                <input id="field_of_vision" name="field_of_vision" type="number" min="1" max="120" value="45">
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td><p>ANTIALIASING:</p></td>
+                            <td>
+                                <select title="antialiasing" name="antialiasing">
+
+                                    <option value="on">on</option>
+                                    <option value="off">off</option>
+                                    
+                                </select>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td><p>FILM EFFECT:</p></td>
+                            <td>
+                                <select title="filmeffect" name="filmeffect">
+
+                                    <option value="on">on</option>
+                                    <option value="off">off</option>
+                                    
+                                </select>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td><p>BLOOM:</p></td>
+                            <td>
+                                <select title="bloom" name="bloom">
+
+                                    <option value="on">on</option>
+                                    <option value="off">off</option>
+                                    
+                                </select>
+
+                            </td>
+
+                        </tr>
+
+                    </table>
+                
+
+                </div>
+                
+                <div id="audio_settings">
+
+                    <table cellspacing="25px">
+
+                            <td><p id="field_value">MUSIC:</p></td>
+                            <td>
+
+                                <div class="slidecontainer">
+                                    <input type="range" name="music_volume" min="0" max="100" value="50" class="slider" id="music_slider">
+                                </div>
+                                <span id="music">Value</span>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td><p id="field_value1">SOUND FX:</p></td>
+                            <td>
+
+                                <div class="slidecontainer">
+                                    <input type="range" name="sound_fx_volume" min="0" max="100" value="50" class="slider" id="soundfx_slider">
+                                </div>
+                                <span id="soundfx">Value</span>
+
+                            </td>
+
+                        </tr>
+
+                    </table>
+        
+                </div>
+
+                <div id="buttons">
+
+                    <button id="save" onclick="settings.onSave();">SAVE</button>
+                    <button id="cancel" onclick="settings.goToPage('/screens/menu.html');">BACK</button>
+
+                </div>
+
+             </form>
+
+        </div>
+
+	</body>
+
+</html>

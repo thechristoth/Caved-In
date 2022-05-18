@@ -1,0 +1,73 @@
+:root {
+    
+    --first-color: rgb(146,26,37);
+    --second-color: rgb(41, 4, 1);
+}
+html, body {
+
+    margin: 0; 
+    height: 100%; 
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+
+}
+
+body{
+
+    background-image: url("../assets/images/menu_bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+
+#menu_options{
+
+    list-style-type: none;
+    list-style: none;
+
+    margin: auto;
+    position: absolute;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+
+}
+
+#menu_options button:hover{
+
+    background: rgba(66, 10, 6, 0.356);
+    border-style: solid;
+    border-width: 1px;
+    border-color:  var(--first-color);
+
+}
+
+#menu_options button{
+
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: var(--first-color);
+    font-size: 25px;
+    letter-spacing: 5px;
+    margin-top: 10px;
+    text-align: center;
+    margin: auto;
+    border: 1px solid transparent;
+
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    
+
+}
+
+body { 
+    opacity: 0;
+    transition: opacity .5s;
+ }

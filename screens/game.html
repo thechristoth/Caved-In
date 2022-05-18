@@ -1,0 +1,326 @@
+<!DOCTYPE html lang="en">
+	<head>
+		<title>Caved In</title>
+		<meta name="description" content="Caved In">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+		<link rel="shortcut icon" href="#">
+        <link rel="stylesheet" href="/styles/game_style.css">
+        
+		<!-- Vendor scripts -->
+        
+        <script src="/libs/three/build/three.js" defer></script>
+        <script src="/libs/tween/dist/tween.umd.js" defer></script>
+        <script src="/libs/three/examples/js/loaders/GLTFLoader.js" defer></script>
+        <script src="/libs/stats/build/stats.js" defer></script>
+        <script src="https://code.createjs.com/1.0.0/soundjs.min.js" defer></script>
+        <script src="/libs/three/examples/js/postprocessing/EffectComposer.js" defer></script>
+        <script src="/libs/three/examples/js/postprocessing/RenderPass.js" defer></script>
+        <script src="/libs/three/examples/js/shaders/CopyShader.js" defer></script>
+        <script src="/libs/three/examples/js/shaders/ConvolutionShader.js" defer></script>
+        <script src="/libs/three/examples/js/postprocessing/ShaderPass.js" defer></script>
+        <script src="/libs/three/examples/js/postprocessing/RenderPass.js" defer></script>
+        <script src="/libs/three/examples/js/shaders/LuminosityHighPassShader.js" defer></script>
+        <script src="/libs/three/examples/js/postprocessing/UnrealBloomPass.js" defer></script>
+        <script src="/libs/three/examples/js/shaders/FilmShader.js" defer></script>
+        <script src="/libs/three/examples/js/postprocessing/FilmPass.js" defer></script>
+        <script src="/libs/three/examples/js/shaders/FXAAShader.js" defer></script>
+        <script src="/libs/three/examples/js/shaders/HueSaturationShader.js" defer></script>
+
+
+
+
+
+        <!-- App scripts -->
+
+        <script src="../scripts/engine/engine.js" defer></script>
+        <script src="../scripts/constants/game_constants.js" defer></script>
+        <script src="../scripts/classes/composition.js" defer></script>
+        <script src="../scripts/classes/app.js" defer></script>
+        <script src="../scripts/classes/world.js" defer></script>
+        <script src="../scripts/classes/assets_manager.js" defer></script>
+        <script src="../scripts/classes/keys.js" defer></script>
+        <script src="../scripts/classes/terrain.js" defer></script>
+        <script src="../scripts/classes/player.js" defer></script>
+        <script src="../scripts/classes/model_loader.js" defer></script>
+		<script src="../scripts/classes/chunk_manager.js" defer></script>
+        <script src="../scripts/classes/chunk.js" defer></script>
+        <script src="../scripts/classes/rock_processing_machine.js" defer></script>
+        <script src="../scripts/classes/manufacturing_machine.js" defer></script>
+        <script src="../scripts/classes/item.js" defer></script>
+        <script src="../scripts/classes/gun.js" defer></script>
+        <script src="../scripts/classes/inventory.js" defer></script>
+        <script src="../scripts/classes/spider.js" defer></script>
+        <script src="../scripts/classes/enemy_manager.js" defer></script>
+        <script src="../scripts/classes/oil_lamp.js" defer></script>
+        <script src="../scripts/classes/grenade.js" defer></script>
+        <script src="../scripts/classes/medicine.js" defer></script>
+        <script src="../scripts/classes/barrier.js" defer></script>
+        <script src="../scripts/classes/mission_manager.js" defer></script>
+        <script src="../scripts/classes/main_power_switch.js" defer></script>
+        <script src="../scripts/classes/game_manager.js" defer></script>
+        <script src="../scripts/classes/main_door.js" defer></script>
+        <script src="../scripts/snippets/create_app.js" defer></script>
+        
+
+	</head>
+
+	<body>
+
+        <div id="gui_elements">
+
+            <div id="inventory"></div>
+
+            <div id="pointers">
+
+                <img src="../assets/images/gun_pointer.png" alt="gun_pointer">
+                <img src="../assets/images/pointer.png" alt="pointer">
+
+            </div>
+
+            <div id="popups"></div>
+
+            <div id="life">
+                <span>HP</span>
+                <div id="lifeBarHud">
+                    <div id="lifeBar"></div>
+                </div>
+            </div>
+
+            <div id="shotgun">
+                <img src="../assets/images/shotgun_ammo.png" alt="shotgun_ammo">
+                <span>0 / 0</span>
+
+                <div id="bulletBox">
+                    <img src="../assets/images/shotgun_ammo_box.png" alt="bulletbox">
+                    <span>x 0</span>
+                </div>
+            </div>
+
+            <div id="magnum">
+                <img src="../assets/images/manum_ammo.png">
+                <span>0 / 0</span>
+
+                <div id="bulletBox">
+                    <img src="../assets/images/magnum_ammo_box.png" alt="bulletbox">
+                    <span>x 0</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="game_over_div">
+            <img id = "game_over" src="../assets/images/game_over.png" alt="game_over">
+        </div>
+
+        <div id="damage_div"></div>
+
+        <div id="loading_screen">
+
+            <div id="loader">
+                <div id="loading_bar_bg">
+                    <div id="loading_bar"></div>
+                </div>
+                <div id="percent_text">0 / 100</div>
+            </div>
+
+        </div>
+
+        <div id="controls">
+
+            <h1>CONTROLS</h1>
+
+            <table cellspacing="25px">
+
+                <tr>
+
+                    <td><p>WALK:</p></td>
+                    <td>
+
+                        <p>A, W, S, D</p>
+
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td><p>LOOK AROUND:</p></td>
+                    <td>
+
+                        <p>MOUSE MOVE</p>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td><p>PICKUP ITEMS / INTERACT WITH THINGS:</p></td>
+                    <td>
+                        <p>E</p>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td><p>SHOOT / USE ITEM:</p></td>
+
+                    <td>
+                        <p>LEFT CLICK</p>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td><p>RELOAD GUN:</p></td>
+                    <td>
+                        <p>R</p>
+
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td><p>BACK TO MENU / BACK TO GAME:</p></td>
+                    <td>
+                        <p>B OR ESC</p>
+
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td><p>GET ITEM FROM INVENTORY:</p></td>
+                    <td>
+                        <p>1, 2, 3, 4, 5</p>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td><p>PUT IN INVENTORY:</p></td>
+                    <td>
+                        <p>Q</p>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td><p>SCROLL ITEMS IN HAND:</p></td>
+                    <td>
+                        <p>MOUSE WHEEL</p>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td><p>CONTROLS INFO:</p></td>
+                    <td>
+                        <p>I</p>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td><p>MATERIAL HELP:</p></td>
+                    <td>
+                        <p>H</p>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <div id="help">
+
+            <h1>MATERIAL HELP</h1>
+
+            <table cellspacing="25px">
+
+                <tr>
+
+                    <td><p>RawGold:</p></td>
+                    <td>
+
+                        <p><img src="../assets/images/gold.png" alt="gold"></p>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td><p>RawIron:</p></td>
+                    <td>
+                        <p><img src="../assets/images/iron.png" alt="iron"></p>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td><p>Coal:</p></td>
+
+                    <td style="text-align: center;">
+                        <p><img src="../assets/images/coal.png" style="height: 50px;" alt="coal"></p>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <div id="pousedScreen">
+
+            <h1>YOU PAUSED THE GAME</h1>
+
+            <table cellspacing="25px">
+
+                <tr>
+
+                    <td><p>PRESS ESC:</p></td>
+                    <td>
+
+                        <p>MENU</p>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td><p>CLICK ON THE GAME:</p></td>
+                    <td>
+                        <p>CONTINUE</p>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+            
+
+        </div>
+
+        <div id="congratulations_screen">
+            <img src="../assets/images/congratulations_paper.png" alt="congratulations_paper">
+        </div>
+
+	</body>
+
+</html>

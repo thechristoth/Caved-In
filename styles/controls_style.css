@@ -1,0 +1,100 @@
+:root {
+
+    --first-color: rgb(146,26,37);
+    --not-selected-color: rgb(114, 24, 32);
+    --second-color: rgb(41, 4, 1);
+
+}
+
+body{
+    
+    margin: 0; 
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(8, 8, 8);
+    background-image: url("/assets/images/menu_settings_bg.jpg");
+}
+
+#controls{
+    
+    margin: 0; 
+    padding: 0;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(14, 14, 14, 0.7);
+}
+
+
+
+h1{
+
+    color: rgb(92, 92, 92);
+    font-size: 35px;
+    letter-spacing: 5px;
+    font-weight: 400;
+    margin-top: 50px;
+    text-align: center;
+
+}
+
+
+
+td p{
+
+    color: rgb(99, 99, 99);
+    margin: 0%;
+
+}
+
+td{
+
+    text-align: left;
+
+    letter-spacing: 3px;
+    
+}
+
+
+table{
+
+    text-align: center;
+
+    margin: 0 20px 0 20px;
+
+}
+
+#buttons{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+#cancel{
+
+    background: rgba(49, 49, 49, 0.356);
+    color:rgb(95, 95, 95);
+    margin-left: 20px;
+    letter-spacing: 5px;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    border: 1px solid transparent;
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+
+}
+
+#cancel:hover{
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(141, 141, 141);
+    
+
+}
